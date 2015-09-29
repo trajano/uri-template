@@ -26,14 +26,11 @@ import com.github.fge.uritemplate.URITemplateParseException;
 import com.github.fge.uritemplate.expression.ExpressionType;
 import com.github.fge.uritemplate.expression.TemplateExpression;
 import com.github.fge.uritemplate.expression.URITemplateExpression;
+import com.github.fge.uritemplate.internal.guava.CharMatcher;
 import com.github.fge.uritemplate.vars.specs.VariableSpec;
-import com.google.common.base.CharMatcher;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 
 import java.nio.CharBuffer;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 final class ExpressionParser
     implements TemplateParser
@@ -46,8 +43,8 @@ final class ExpressionParser
     private static final CharMatcher END_EXPRESSION = CharMatcher.is('}');
 
     static {
-        final ImmutableMap.Builder<Character, ExpressionType> builder
-            = ImmutableMap.builder();
+        final Map<Character, ExpressionType> builder
+            = new HashMap<Character, ExpressionType>();
 
         char c;
         ExpressionType type;
@@ -80,7 +77,7 @@ final class ExpressionParser
         type = ExpressionType.QUERY_CONT;
         builder.put(c, type);
 
-        EXPRESSION_TYPE_MAP = builder.build();
+        EXPRESSION_TYPE_MAP = Collections.unmodifiableMap(builder);
     }
 
     @Override
@@ -109,7 +106,7 @@ final class ExpressionParser
         /*
          * Now, swallow varspec by varspec.
          */
-        final List<VariableSpec> varspecs = Lists.newArrayList();
+        final List<VariableSpec> varspecs = new ArrayList<VariableSpec>();
 
         while (true) {
             /*

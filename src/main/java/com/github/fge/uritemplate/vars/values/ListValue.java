@@ -19,11 +19,10 @@
 
 package com.github.fge.uritemplate.vars.values;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.NotThreadSafe;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -47,7 +46,7 @@ public final class ListValue
     private ListValue(final Builder builder)
     {
         super(ValueType.ARRAY);
-        list = ImmutableList.copyOf(builder.list);
+        list = Collections.unmodifiableList(new ArrayList<String>(builder.list));
     }
 
     /**
@@ -106,7 +105,7 @@ public final class ListValue
     @NotThreadSafe
     public static final class Builder
     {
-        private final List<String> list = Lists.newArrayList();
+        private final List<String> list = new ArrayList<String>();
 
         private Builder()
         {

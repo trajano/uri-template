@@ -24,9 +24,9 @@ import com.github.fge.msgsimple.load.MessageBundles;
 import com.github.fge.uritemplate.URITemplateException;
 import com.github.fge.uritemplate.URITemplateMessageBundle;
 import com.github.fge.uritemplate.expression.ExpressionType;
+import com.github.fge.uritemplate.internal.guava.Joiner;
 import com.github.fge.uritemplate.vars.specs.VariableSpec;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.base.Joiner;
 
 import java.util.List;
 

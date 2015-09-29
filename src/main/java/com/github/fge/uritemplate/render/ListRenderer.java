@@ -21,9 +21,9 @@ package com.github.fge.uritemplate.render;
 
 import com.github.fge.uritemplate.expression.ExpressionType;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,7 +41,7 @@ public final class ListRenderer
     protected List<String> renderNamedExploded(final String varname,
         final VariableValue value)
     {
-        final List<String> ret = Lists.newArrayList();
+        final List<String> ret = new ArrayList<String>();
 
         for (final String element: value.getListValue())
             ret.add(element.isEmpty() ? varname + ifEmpty
@@ -53,7 +53,7 @@ public final class ListRenderer
     @Override
     protected List<String> renderUnnamedExploded(final VariableValue value)
     {
-        final List<String> ret = Lists.newArrayList();
+        final List<String> ret = new ArrayList<String>();
 
         for (final String element: value.getListValue())
             ret.add(pctEncode(element));
@@ -67,32 +67,33 @@ public final class ListRenderer
     {
         final StringBuilder sb = new StringBuilder(varname);
 
-        if (value.isEmpty())
-            return ImmutableList.of(sb.append(ifEmpty).toString());
+        if (value.isEmpty()) {
+            return Collections.unmodifiableList(Collections.singletonList(sb.append(ifEmpty).toString()));
+        }
 
         sb.append('=');
 
-        final List<String> elements = Lists.newArrayList();
+        final List<String> elements = new ArrayList<String>();
 
         for (final String element: value.getListValue())
             elements.add(pctEncode(element));
 
         COMMA.appendTo(sb, elements);
 
-        return ImmutableList.of(sb.toString());
+        return Collections.unmodifiableList(Collections.singletonList(sb.toString()));
     }
 
     @Override
     protected List<String> renderUnnamedNormal(final VariableValue value)
     {
         if (value.isEmpty())
-            return ImmutableList.of();
+            return Collections.emptyList();
 
-        final List<String> ret = Lists.newArrayList();
+        final List<String> ret = new ArrayList<String>();
 
         for (final String element: value.getListValue())
             ret.add(pctEncode(element));
 
-        return ImmutableList.of(COMMA.join(ret));
+        return Collections.unmodifiableList(Collections.singletonList(COMMA.join(ret)));
     }
 }

@@ -22,9 +22,10 @@ package com.github.fge.uritemplate.vars;
 import com.github.fge.Frozen;
 import com.github.fge.uritemplate.URITemplate;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.collect.ImmutableMap;
 
 import javax.annotation.concurrent.Immutable;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,7 +50,7 @@ public final class VariableMap
 
     VariableMap(final VariableMapBuilder builder)
     {
-        vars = ImmutableMap.copyOf(builder.vars);
+        vars = Collections.unmodifiableMap(new HashMap<String, VariableValue>(builder.vars));
     }
 
     /**

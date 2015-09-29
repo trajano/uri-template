@@ -27,9 +27,9 @@ import com.github.fge.uritemplate.vars.values.ListValue;
 import com.github.fge.uritemplate.vars.values.MapValue;
 import com.github.fge.uritemplate.vars.values.ScalarValue;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.collect.Maps;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -46,7 +46,7 @@ public final class VariableMapBuilder
     private static final MessageBundle BUNDLE
         = MessageBundles.getBundle(URITemplateMessageBundle.class);
 
-    final Map<String, VariableValue> vars = Maps.newHashMap();
+    final Map<String, VariableValue> vars = new HashMap<String, VariableValue>();
 
     VariableMapBuilder()
     {

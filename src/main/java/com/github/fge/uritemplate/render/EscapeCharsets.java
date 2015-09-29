@@ -19,7 +19,7 @@
 
 package com.github.fge.uritemplate.render;
 
-import com.google.common.net.PercentEscaper;
+import com.github.fge.uritemplate.internal.guava.PercentEscaper;
 
 /**
  * Character sets to escape during URI template expansions

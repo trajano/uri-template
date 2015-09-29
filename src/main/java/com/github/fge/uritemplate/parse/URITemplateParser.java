@@ -25,11 +25,10 @@ import com.github.fge.uritemplate.URITemplate;
 import com.github.fge.uritemplate.URITemplateMessageBundle;
 import com.github.fge.uritemplate.URITemplateParseException;
 import com.github.fge.uritemplate.expression.URITemplateExpression;
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.CharMatcher;
-import com.google.common.collect.Lists;
+import com.github.fge.uritemplate.internal.guava.CharMatcher;
 
 import java.nio.CharBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,11 +55,10 @@ public final class URITemplateParser
         return parse(CharBuffer.wrap(input).asReadOnlyBuffer());
     }
 
-    @VisibleForTesting
     static List<URITemplateExpression> parse(final CharBuffer buffer)
         throws URITemplateParseException
     {
-        final List<URITemplateExpression> ret = Lists.newArrayList();
+        final List<URITemplateExpression> ret = new ArrayList<URITemplateExpression>();
 
         TemplateParser templateParser;
         URITemplateExpression expression;

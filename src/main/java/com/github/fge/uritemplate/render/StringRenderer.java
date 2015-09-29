@@ -23,8 +23,8 @@ import com.github.fge.uritemplate.URITemplateException;
 import com.github.fge.uritemplate.expression.ExpressionType;
 import com.github.fge.uritemplate.vars.specs.VariableSpec;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.collect.ImmutableList;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,7 +46,7 @@ public final class StringRenderer
         final VariableValue value)
         throws URITemplateException
     {
-        return ImmutableList.of(doRender(varspec, value.getScalarValue()));
+        return Collections.unmodifiableList(Collections.singletonList(doRender(varspec, value.getScalarValue())));
     }
 
     private String doRender(final VariableSpec varspec, final String value)

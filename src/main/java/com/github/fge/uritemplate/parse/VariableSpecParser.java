@@ -23,15 +23,15 @@ import com.github.fge.msgsimple.bundle.MessageBundle;
 import com.github.fge.msgsimple.load.MessageBundles;
 import com.github.fge.uritemplate.URITemplateMessageBundle;
 import com.github.fge.uritemplate.URITemplateParseException;
+import com.github.fge.uritemplate.internal.guava.CharMatcher;
+import com.github.fge.uritemplate.internal.guava.Joiner;
 import com.github.fge.uritemplate.vars.specs.ExplodedVariable;
 import com.github.fge.uritemplate.vars.specs.PrefixVariable;
 import com.github.fge.uritemplate.vars.specs.SimpleVariable;
 import com.github.fge.uritemplate.vars.specs.VariableSpec;
-import com.google.common.base.CharMatcher;
-import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
 
 import java.nio.CharBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 final class VariableSpecParser
@@ -79,7 +79,7 @@ final class VariableSpecParser
     private static String parseFullName(final CharBuffer buffer)
         throws URITemplateParseException
     {
-        final List<String> components = Lists.newArrayList();
+        final List<String> components = new ArrayList<String>();
 
         while (true) {
             components.add(readName(buffer));

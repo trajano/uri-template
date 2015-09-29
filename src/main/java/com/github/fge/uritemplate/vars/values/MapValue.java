@@ -19,11 +19,10 @@
 
 package com.github.fge.uritemplate.vars.values;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.NotThreadSafe;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -48,7 +47,7 @@ public final class MapValue
     private MapValue(final Builder builder)
     {
         super(ValueType.MAP);
-        map = ImmutableMap.copyOf(builder.map);
+        map = Collections.unmodifiableMap(new LinkedHashMap<String, String>(builder.map));
     }
 
     /**
@@ -99,7 +98,7 @@ public final class MapValue
          * by URIs, it is nicer to the user. And Guava's ImmutableMap respects
          * insertion order as well.
          */
-        private final Map<String, String> map = Maps.newLinkedHashMap();
+        private final Map<String, String> map = new LinkedHashMap<String, String>();
 
         private Builder()
         {

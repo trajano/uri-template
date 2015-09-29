@@ -19,7 +19,7 @@
 
 package com.github.fge.uritemplate.parse;
 
-import com.google.common.base.CharMatcher;
+import com.github.fge.uritemplate.internal.guava.CharMatcher;
 
 /**
  * Character sets needed by the parsing process

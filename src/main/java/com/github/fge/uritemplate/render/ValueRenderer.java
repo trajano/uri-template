@@ -21,10 +21,9 @@ package com.github.fge.uritemplate.render;
 
 import com.github.fge.uritemplate.URITemplateException;
 import com.github.fge.uritemplate.expression.ExpressionType;
+import com.github.fge.uritemplate.internal.guava.PercentEscaper;
 import com.github.fge.uritemplate.vars.specs.VariableSpec;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.escape.Escaper;
-import com.google.common.net.PercentEscaper;
 
 import java.util.List;
 
@@ -65,7 +64,7 @@ public abstract class ValueRenderer
      *
      * @see EscapeCharsets
      */
-    private final Escaper escaper;
+    private final PercentEscaper escaper;
 
     /**
      * Constructor

@@ -20,14 +20,14 @@
 package com.github.fge.uritemplate.expression;
 
 import com.github.fge.uritemplate.URITemplateException;
+import com.github.fge.uritemplate.internal.guava.Joiner;
 import com.github.fge.uritemplate.render.ValueRenderer;
 import com.github.fge.uritemplate.vars.VariableMap;
 import com.github.fge.uritemplate.vars.specs.VariableSpec;
 import com.github.fge.uritemplate.vars.values.VariableValue;
-import com.google.common.base.Joiner;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,7 +48,7 @@ public final class TemplateExpression
         final List<VariableSpec> variableSpecs)
     {
         this.expressionType = expressionType;
-        this.variableSpecs = ImmutableList.copyOf(variableSpecs);
+        this.variableSpecs = Collections.unmodifiableList(new ArrayList<VariableSpec>(variableSpecs));
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class TemplateExpression
          */
 
         // Expanded values
-        final List<String> expansions = Lists.newArrayList();
+        final List<String> expansions = new ArrayList<String>();
 
         VariableValue value;
         ValueRenderer renderer;
